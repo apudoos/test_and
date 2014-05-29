@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">BibleQuiz</string>
+    <string name="q1">Was David the First King of Israel?</string>
+    <string name="a1">No</string>
+    <string name="q2">Was Joshua the son of Nun?</string>
+    <string name="a2">Yes</string>
+    <string name="q3">Did Moses lead Israel out of Egypt?</string>
+    <string name="a3">Yes</string>
+    <string name="q4">Did Moses lead Israel out of Egypt?</string>
+    <string name="a4">Yes</string>    
+    <string name="action_settings">Settings</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="prev">Prev</string>
+    <string name="next">Next</string>
+    <string name="correct_toast">Correct!</string>
+    <string name="incorrect_toast">Incorrect!</string>
+
+</resources>

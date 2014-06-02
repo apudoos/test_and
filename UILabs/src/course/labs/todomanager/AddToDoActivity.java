@@ -93,6 +93,7 @@ public class AddToDoActivity extends Activity {
 				log("Entered cancelButton.OnClickListener.onClick()");
 
 				//TODO - Implement onClick().  
+				setResult(Activity.RESULT_CANCELED);
 				finish();
 
 			}
@@ -144,10 +145,8 @@ public class AddToDoActivity extends Activity {
 				ToDoItem.packageIntent(data, titleString, priority, status, fullDate);
 
 				//TODO - return data Intent and finish
-				
-
-				
-				
+				setResult(Activity.RESULT_OK, data);
+				finish();				
 			}
 		});
 	}

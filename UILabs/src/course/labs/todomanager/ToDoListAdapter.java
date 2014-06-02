@@ -90,7 +90,7 @@ public class ToDoListAdapter extends BaseAdapter {
 		//TODO - Inflate the View for this ToDoItem
 		// from todo_item.xml.
 		//LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		RelativeLayout itemLayout = (RelativeLayout) LayoutInflater.from(mContext).inflate(R.id.RelativeLayout1, null);
+		RelativeLayout itemLayout = (RelativeLayout) LayoutInflater.from(mContext).inflate(R.layout.todo_item, null);
 		
 		//TODO - Fill in specific ToDoItem data
 		// Remember that the data that goes in this View
@@ -105,8 +105,8 @@ public class ToDoListAdapter extends BaseAdapter {
 		// TODO - Set up Status CheckBox
 	
 		final CheckBox statusView = (CheckBox) itemLayout.findViewById(R.id.statusCheckBox);
-		
-		
+		statusView.setChecked(Boolean.valueOf(toDoItem.getStatus().toString()));
+			
 		statusView.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView,
@@ -116,13 +116,8 @@ public class ToDoListAdapter extends BaseAdapter {
 				// TODO - Set up and implement an OnCheckedChangeListener, which 
 				// is called when the user toggles the status checkbox
 				if (statusView.isChecked()) {
-					statusView.setText("Not Done");
-				} else {
 					statusView.setText("Done");
-				}
-
-
-			
+				}			
 			}
 		});
 

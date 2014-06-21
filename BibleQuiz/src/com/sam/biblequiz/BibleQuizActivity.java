@@ -4,6 +4,7 @@ package com.sam.biblequiz;
 import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -33,12 +34,9 @@ public class BibleQuizActivity extends Activity {
 			new QuizProcessor(R.string.q2, R.string.a2),
 			new QuizProcessor(R.string.q3, R.string.a3),
 			new QuizProcessor(R.string.q4, R.string.a4),
+			new QuizProcessor(R.string.q5, R.string.a5)
 		};
 
-		if (savedInstanceState == null) {
-			getFragmentManager().beginTransaction()
-					.add(R.id.container, new PlaceholderFragment()).commit();
-		}
 		
 		mYes = (Button) findViewById(R.id.button1);
 		mNo = (Button) findViewById(R.id.button2);
@@ -51,7 +49,7 @@ public class BibleQuizActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				checkAnswer(mYes);
+				checkAnswer(mYes, mNo);
 			}
 
 		});
@@ -60,7 +58,7 @@ public class BibleQuizActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				checkAnswer(mNo);
+				checkAnswer(mNo, mYes);
 			}
 		});
 		
@@ -68,7 +66,10 @@ public class BibleQuizActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				updateQuestion();				
+				quiznumber = (quiznumber + 1) % quizprocessor.length;
+				updateQuestion();
+				mNo.setEnabled(true);
+				mYes.setEnabled(true);
 			}
 		});
 		
@@ -77,14 +78,20 @@ public class BibleQuizActivity extends Activity {
 
 	private void updateQuestion() {
 		int question = quizprocessor[quiznumber].getmQuestion();
-		textview.setText(question);
-		quiznumber = (quiznumber + 1) % quizprocessor.length;
+		textview.setText(question);		
 	}
 	
-	private void checkAnswer(Button B) {
-		if(B.getText().toString() == getString(quizprocessor[quiznumber].getmAnswer())) {
+	private void checkAnswer(Button a, Button b) {
+		Log.i(getApplicationContext().toString(), "a.getText().toString()" + a.getText().toString());
+		Log.i(getApplicationContext().toString(), "getString(quizprocessor[quiznumber].getmAnswer())" + getString(quizprocessor[quiznumber].getmAnswer()));
+		if(a.getText().toString() == getString(quizprocessor[quiznumber].getmAnswer())) {
 			Toast.makeText(getApplicationContext(), R.string.correct_toast, Toast.LENGTH_SHORT).show();
+		} else {
+			Toast.makeText(getApplicationContext(), R.string.incorrect_toast, Toast.LENGTH_SHORT).show();
 		}
+		
+		a.setEnabled(false);
+		b.setEnabled(false);
 	}
 
 	@Override

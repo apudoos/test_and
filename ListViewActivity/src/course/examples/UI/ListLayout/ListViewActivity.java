@@ -2,6 +2,7 @@ package course.examples.UI.ListLayout;
 
 import android.app.ListActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -18,11 +19,16 @@ public class ListViewActivity extends ListActivity {
 		//setListAdapter(new ArrayAdapter<String>(this, R.layout.list_item,
 		//		getResources().getStringArray(R.array.colors)));
 		
+		//ArrayAdapter <String>adapter = new ArrayAdapter<String> (this, R.layout.list_item, getResources().getStringArray(R.array.colors));
 		ArrayAdapter <String>adapter = new ArrayAdapter<String> (this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.colors));
-		
-		//ListView lv = getListView();
-		ListView lv = (ListView) findViewById(R.layout.list_item);
-		lv.setAdapter(adapter);
+		ListView lv = getListView();
+		//ListView lv = (ListView) findViewById(R.layout.list_item);
+		//try {
+			lv.setAdapter(adapter);
+		//} catch (Throwable any) {
+		//	Log.e("MYAPP", "exception" + Log.getStackTraceString(any));
+		//	return;
+		//}
 		lv.setTextFilterEnabled(true);
 
 		lv.setOnItemClickListener(new OnItemClickListener() {
